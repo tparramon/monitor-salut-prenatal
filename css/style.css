@@ -1,0 +1,45 @@
+#app {
+  margin: 20px;
+}
+
+#grafics {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)) !important;
+  grid-gap: 30px !important;
+  max-width: 100% !important;
+  margin: 0 auto 30px !important;
+}
+
+article {
+  position: relative !important;
+}
+
+/* CSS NTC */
+.ct-chart-ntc .ct-series-a .ct-line {
+  stroke: #d17905 !important;
+}
+.ct-chart-ntc .ct-series-a .ct-point {
+  stroke:  #d17905 !important;
+}
+
+/* CSS BPM */
+.ct-chart-bpm .ct-series-a .ct-line {
+  stroke: hsl(82, 50%, 50%) !important;
+}
+.ct-chart-bpm .ct-series-a .ct-point {
+  stroke:  hsl(82, 50%, 50%) !important;
+}
+
+/* CSS SPo2 */
+.ct-chart-spo2 .ct-series-a .ct-line {
+  stroke: #f4c63d !important;
+  stroke-width: 5px;
+  stroke-dasharray: 10px 20px;
+}
+.ct-chart-spo2 .ct-series-a .ct-point {
+  stroke:  #f4c63d !important;
+}
+.ct-chart-spo2 .ct-series-a .ct-area{
+  fill: #f4c63d !important;
+}
+

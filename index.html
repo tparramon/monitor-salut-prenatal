@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Monitor de Salut prenatal</title>
+  	<link rel="stylesheet" href="./css/chartist.min.css">
+  	<script src="./js/chartist.min.js"></script>
+	<script src="./js/vue.js">	</script>
+	<link href="./css/bulma.min.css" rel="stylesheet" type="text/css" />
+	<link href="./css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<div id="app">
+		<center><a @click="request" class="button">Connectar Bluetooth</a></center>
+	</div>
+	<section id="grafics">
+		<articles><div class="ct-chart-fsr_1 table-cell"></div></articles>
+		<articles><div class="ct-chart-ntc table-cell"></div></articles>
+		<articles><div class="ct-chart-adx table-cell"></div></articles>
+		<articles><div class="ct-chart-bpm table-cell"></div></articles>
+		<articles><div class="ct-chart-spo2 table-cell"></div></articles>
+	</section>
+	<script src="./js/bluetooth.js"></script>
+</body>
+
+</html>
