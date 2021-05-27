@@ -37,11 +37,11 @@ void setup() {
   Serial.begin(SERIAL_BAUD);
   BluetoothSerial.begin(BLE_BAUD);
 
-  adxl.init(); // Inicialització de l'accelerometre
+  //adxl.init(); // Inicialització de l'accelerometre
 
 
   /* NOMÉS EN CAS DE FER SERVIR Arduino Leonardo*/
-  /* 
+   
   // Inicialitzem el pulsioxometre
   if (!particleSensor.begin(Wire, I2C_SPEED_FAST)) //Utilitza el port I2C per defecte, a una velocitat de 400 kHz
   {
@@ -57,7 +57,7 @@ void setup() {
   int adcRange = 4096; //Opcions: 2048, 4096, 8192, 16384
   
   particleSensor.setup(ledBrightness, sampleAverage, ledMode, sampleRate, pulseWidth, adcRange); //Configurem el sensor amb les variables recomanades pel fabricant.
-  */
+  
   
   // Només en el cas que estiguem fent servir la placa Arduino UNO
   randomSeed(analogRead(0)); 
@@ -170,9 +170,9 @@ void loop() {
     Serial.print(String("Y: ") +adxlAy); Serial.print(F("\t"));  
     Serial.println(String("Z: ") +adxlAz);
     
-    BluetoothSerial.print(String("X: ") + adxlAx); BluetoothSerial.print(F("\t"));
-    BluetoothSerial.print(String("Y: ") + adxlAy); BluetoothSerial.print(F("\t"));  
-    BluetoothSerial.println(String("Z: ") + adxlAz);
+    BluetoothSerial.print(String("X ") + adxlAx); BluetoothSerial.print(F("\t"));
+    BluetoothSerial.print(String("Y ") + adxlAy); BluetoothSerial.print(F("\t"));  
+    BluetoothSerial.println(String("Z ") + adxlAz);
     previous_ADXL345 = currentTime;
   }
   

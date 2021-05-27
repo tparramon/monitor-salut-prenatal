@@ -43,9 +43,9 @@ let app = new Vue({
 
       var fsr_1 = 0;
       var adx = 0;
-      var adx_x; 
-      var adx_y; 
-      var adx_z;
+      var adx_x = 'NULL'; 
+      var adx_y = 'NULL'; 
+      var adx_z = 'NULL';
       var pulsioxometre; 
       var bpm;
       var spo2;
@@ -71,13 +71,13 @@ let app = new Vue({
             console.log(pulsioxometre);
           }
           
-          adx = ((/X: -?\d{1,3}\tY: -?\d{1,3}\tZ: -?\d{1,3}/.test(receiveBuffer)) ? receiveBuffer.match(new RegExp(/X: -?\d{1,3}\tY. -?\d{1,3}\tZ: -?\d{1,3}/)) : 0 );
+          adx = ((/X? ?-?\d{1,3}\tY -?\d{1,3}\tZ -?\d{1,3}/.test(receiveBuffer)) ? receiveBuffer.match(new RegExp(/X? ?-?\d{1,3}\tY -?\d{1,3}\tZ -?\d{1,3}/)) : 0 );
           if (adx[0]) {
             // Parsing accelerometre
             adx = adx[0];
-            adx_x = adx.split(/X:|\tY:|\tZ:/)[1];
-            adx_y = adx.split(/\tY: |\tZ:/)[1];
-            adx_z = adx.split(/\tZ: /)[1];
+            adx_x = ((adx.split(/X|\tY|\tZ/)[0])=="") ? adx.split(/X|\tY|\tZ/)[1] : adx.split(/X|\tY|\tZ/)[0];
+            adx_y = ((adx.split(/X|\tY|\tZ/)[0])=="") ? adx.split(/X|\tY|\tZ/)[2] : adx.split(/X|\tY|\tZ/)[1];
+            adx_z = ((adx.split(/X|\tY|\tZ/)[0])=="") ? adx.split(/X|\tY|\tZ/)[3] : adx.split(/X|\tY|\tZ/)[2];
             value = adx_x + ' ' + adx_y + ' ' + adx_z;
             this.saveDataToDatabase("adx",value);
             console.log(adx);
@@ -115,13 +115,13 @@ let app = new Vue({
         series: [this.data_ntc]}, {
         width: 600,
         height: 400,
-        low: 30
+        low: 20
       });
 
       // Mostrar accelerometre
-      if (adx_x !=0 ) this.data_adx_x.push(adx_x);
-      if (adx_y !=0 ) this.data_adx_y.push(adx_y);
-      if (adx_z !=0 ) this.data_adx_z.push(adx_z);
+      if (adx_x != 'NULL') this.data_adx_x.push(adx_x);
+      if (adx_y != 'NULL') this.data_adx_y.push(adx_y);
+      if (adx_z != 'NULL') this.data_adx_z.push(adx_z);
       new Chartist.Line('.ct-chart-adx', {
         labels: ["Valors ADX"],
         series: [this.data_adx_x, this.data_adx_y, this.data_adx_z]}, {
